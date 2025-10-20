@@ -46,6 +46,10 @@ public class Application {
         return sum;
     }
 
+    public static void outputResult(int result) {
+        System.out.println(result);
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
     }
