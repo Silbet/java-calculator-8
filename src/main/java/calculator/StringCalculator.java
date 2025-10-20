@@ -7,28 +7,41 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private String delimiters = ",|:";
+    private static final String DELIMITERS = ",|:";
 
     public int calculator(String input) {
-        String trimmedInput = appendDelimiters(input);
-        List<Integer> numbers = extractNumber(trimmedInput);
+        String delimiters = DELIMITERS;
+
+        delimiters += appendDelimiters(input);
+        String trimmedInput = trimString(input);
+
+        List<Integer> numbers = extractNumber(trimmedInput, delimiters);
         return addNumber(numbers);
     }
 
+    // 커스텀 구분자를 분리해 리턴하는 메소드
     private String appendDelimiters(String s) {
         // 커스텀 구분자는 문자 하나만 가능하다는 정규표현식
         Pattern pattern = Pattern.compile("^//(.)\\\\n");
         Matcher matcher = pattern.matcher(s);
-        // 커스텀 구분자 양식이 일치하는 경우 양식을 제거하고 뒤 문자열 리턴
+        // 커스텀 구분자 양식이 일치하는 경우 커스텀 구분자 리턴
         if (matcher.find()) {
-            String result = matcher.group(1);
-            delimiters += "|" + result;
+            return "|" + matcher.group(1);
+        }
+        return "";
+    }
+
+    // 커스텀 구분자 양식이 있다면 지우고 문자열을 리턴하는 메소드
+    private String trimString(String s) {
+        Pattern pattern = Pattern.compile("^//(.)\\\\n");
+        Matcher matcher = pattern.matcher(s);
+        if (matcher.find()) {
             return matcher.replaceFirst("");
         }
         return s;
     }
 
-    private List<Integer> extractNumber(String s) {
+    private List<Integer> extractNumber(String s, String delimiters) {
         List<Integer> numbers = new ArrayList<>();
 
         String[] parts = s.split(delimiters, -1);
