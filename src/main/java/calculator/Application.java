@@ -64,7 +64,7 @@ public class Application {
     }
 
     public static void outputResult(int result) {
-        System.out.println(result);
+        System.out.println("결과 : " + result);
     }
 
     public static void main(String[] args) {
