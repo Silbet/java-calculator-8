@@ -68,6 +68,10 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        String input = inputString();
+        String trimmedInput = appendDelimiters(input);
+        List<Integer> numbers = extractNumber(trimmedInput);
+        int result = addNumber(numbers);
+        outputResult(result);
     }
 }
