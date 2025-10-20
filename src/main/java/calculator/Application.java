@@ -30,10 +30,14 @@ public class Application {
     public static List<Integer> extractNumber(String s) {
         List<Integer> numbers = new ArrayList<>();
 
-        String[] parts = s.split(delimiters);
+        String[] parts = s.split(delimiters, -1);
 
         // 추출한 숫자를 List<Integer> 형태로 변환 후 리턴
         for (String part : parts) {
+            // ""인 경우 값을 0으로 바꾸기
+            if (part.equals("")) {
+                part = "0";
+            }
             numbers.add(Integer.parseInt(part));
         }
 
