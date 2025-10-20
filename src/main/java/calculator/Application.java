@@ -16,7 +16,7 @@ public class Application {
 
     public static String appendDelimiters(String s) {
         // 커스텀 구분자는 문자 하나만 가능하다는 정규표현식
-        Pattern pattern = Pattern.compile("//(.)\\\\n");
+        Pattern pattern = Pattern.compile("^//(.)\\\\n");
         Matcher matcher = pattern.matcher(s);
         // 커스텀 구분자 양식이 일치하는 경우 양식을 제거하고 뒤 문자열 리턴
         if (matcher.find()) {
