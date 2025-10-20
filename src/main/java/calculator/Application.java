@@ -15,6 +15,7 @@ public class Application {
     }
 
     public static void appendDelimiters(String s) {
+        // 커스텀 구분자는 문자 하나만 가능하다는 정규표현식
         Pattern pattern = Pattern.compile("//(.)\n");
         Matcher matcher = pattern.matcher(s);
 
