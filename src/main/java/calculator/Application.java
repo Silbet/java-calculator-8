@@ -14,16 +14,17 @@ public class Application {
         return Console.readLine();
     }
 
-    public static void appendDelimiters(String s) {
+    public static String appendDelimiters(String s) {
         // 커스텀 구분자는 문자 하나만 가능하다는 정규표현식
         Pattern pattern = Pattern.compile("//(.)\n");
         Matcher matcher = pattern.matcher(s);
-
-        // TODO: find() 값이 false가 나왔을 때 예외 처리 필요
+        // 커스텀 구분자 양식이 일치하는 경우 양식을 제거하고 뒤 문자열 리턴
         if (matcher.find()) {
             String result = matcher.group(1);
             delimiters += "|" + result;
+            return matcher.replaceFirst("");
         }
+        return s;
     }
 
     public static List<Integer> extractNumber(String s) {
