@@ -38,10 +38,21 @@ public class Application {
             if (part.equals("")) {
                 part = "0";
             }
+            validateNumber(part);
             numbers.add(Integer.parseInt(part));
         }
 
         return numbers;
+    }
+
+    public static void validateNumber(String part) {
+        if (!part.matches("\\d+")) {
+            throw new IllegalArgumentException("숫자, 구분자 외의 문자는 입력할 수 없습니다.");
+        }
+
+        if (Integer.parseInt(part) <= 0) {
+            throw new IllegalArgumentException("양수가 아닌 정수는 입력할 수 없습니다.");
+        }
     }
 
     public static int addNumber(List<Integer> numbers) {
